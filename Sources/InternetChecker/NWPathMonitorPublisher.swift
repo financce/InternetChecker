@@ -10,11 +10,11 @@ import Foundation
 import Network
 
 extension NWPathMonitor {
-    func publisher(queue: DispatchQueue = DispatchQueue.main) -> NWPathMonitor.Publisher {
+   public func publisher(queue: DispatchQueue = DispatchQueue.main) -> NWPathMonitor.Publisher {
         Publisher(monitor: self, queue: queue)
     }
     
-    final class Subscription<S: Subscriber>: Combine.Subscription where S.Input == NWPath {
+    public class Subscription<S: Subscriber>: Combine.Subscription where S.Input == NWPath {
         private let subscriber: S
         private let monitor: NWPathMonitor
         private let queue: DispatchQueue
@@ -26,7 +26,7 @@ extension NWPathMonitor {
             self.queue = queue
         }
 
-        func request(_ demand: Subscribers.Demand) {
+        public func request(_ demand: Subscribers.Demand) {
             precondition(demand == .unlimited, "This subscription is only supported to `Demand.unlimited`.")
             
             guard !isStarted else { return }
@@ -38,14 +38,14 @@ extension NWPathMonitor {
             monitor.start(queue: queue)
         }
         
-        func cancel() {
+        public func cancel() {
             monitor.cancel()
         }
     }
     
-    struct Publisher: Combine.Publisher {
-        typealias Output = NWPath
-        typealias Failure = Never
+    public struct Publisher: Combine.Publisher {
+        public typealias Output = NWPath
+        public typealias Failure = Never
         
         private let monitor: NWPathMonitor
         private let queue: DispatchQueue
@@ -55,7 +55,7 @@ extension NWPathMonitor {
             self.queue = queue
         }
         
-        func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
+        public func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
             let subscription = Subscription(subscriber: subscriber, monitor: monitor, queue: queue)
             subscriber.receive(subscription: subscription)
         }
