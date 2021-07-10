@@ -12,12 +12,12 @@ import Combine
 
 public class ViewModelCheckerInternet: ObservableObject {
     //
-    @Published var status: NWPath.Status = .satisfied
-    var checkerInternet: CheckerInternetProtocol
-    var cancellableTimer: Cancellable?
-    var cancellableCheckIntermet: Cancellable?
+    @Published public var status: NWPath.Status = .satisfied
+    public var checkerInternet: CheckerInternetProtocol
+    public var cancellableTimer: Cancellable?
+    public var cancellableCheckIntermet: Cancellable?
     
-    init(checkerInternet: CheckerInternetProtocol) {
+    public init(checkerInternet: CheckerInternetProtocol) {
         self.checkerInternet = checkerInternet
         cancellableTimer = Timer.publish(every: 2, on: .main, in: .common)
             .autoconnect()
