@@ -3,7 +3,7 @@ import SwiftUI
 import Network
 import Combine
 
-protocol CheckerInternetProtocol {
+public protocol CheckerInternetProtocol {
     // Wrapped value
     var status: NWPath.Status { get }
  
@@ -18,17 +18,17 @@ protocol CheckerInternetProtocol {
 }
 
 
-final class CheckerInternet: ObservableObject, CheckerInternetProtocol{
+public class CheckerInternet: ObservableObject, CheckerInternetProtocol{
     
-    @Published private(set)  var status: NWPath.Status = .satisfied
+    @Published private(set)  public var status: NWPath.Status = .satisfied
     
-    var statusPublished: Published<NWPath.Status> { _status}
+    public var statusPublished: Published<NWPath.Status> { _status}
     
-    var statusPublisher: Published<NWPath.Status>.Publisher { $status}
+    public var statusPublisher: Published<NWPath.Status>.Publisher { $status}
     
-    var store: Set<AnyCancellable> = []
+    public var store: Set<AnyCancellable> = []
     
-    func changeStatus(_ status: NWPath.Status) {
+    public func changeStatus(_ status: NWPath.Status) {
         self.status = status
     }
     

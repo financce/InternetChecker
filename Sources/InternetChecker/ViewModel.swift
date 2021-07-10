@@ -10,7 +10,7 @@ import Network
 import Combine
 
 
-final class ViewModelCheckerInternet: ObservableObject {
+public class ViewModelCheckerInternet: ObservableObject {
     
     @Published var status: NWPath.Status = .satisfied
     var checkerInternet: CheckerInternetProtocol
