@@ -11,7 +11,7 @@ import Combine
 
 
 public class ViewModelCheckerInternet: ObservableObject {
-    
+    //
     @Published var status: NWPath.Status = .satisfied
     var checkerInternet: CheckerInternetProtocol
     var cancellableTimer: Cancellable?
