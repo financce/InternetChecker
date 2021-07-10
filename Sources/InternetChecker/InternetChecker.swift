@@ -32,7 +32,7 @@ public class CheckerInternet: ObservableObject, CheckerInternetProtocol{
         self.status = status
     }
     
-    init() {
+    public init() {
                 NWPathMonitor()
                     .publisher()
                     .map { $0.status }
