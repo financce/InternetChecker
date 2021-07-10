@@ -1,3 +1,3 @@
 # InternetChecker
 
-A description of this package.
+This package provide to check internet connection
