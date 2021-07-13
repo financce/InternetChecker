@@ -33,15 +33,16 @@ public class CheckerInternet: ObservableObject, CheckerInternetProtocol{
     }
     
     public init() {
-                NWPathMonitor()
+        NWPathMonitor(requiredInterfaceType: .cellular)
                     .publisher()
-                    .map { $0.status }
+                     .map { $0.status }
                     .sink {[weak self] status in
                         guard let self = self  else { return }
                         self.changeStatus(status)
                     }
                     .store(in: &self.store)
         }
+    
     
     deinit {
         print("VM deinit")
