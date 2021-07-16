@@ -3,7 +3,7 @@ import SwiftUI
 import Network
 import Combine
 
-public protocol CheckerInternetProtocol {
+public protocol CheckerInternetProtocol: AnyObject {
     // Wrapped value
     var status: NWPath.Status { get }
  
