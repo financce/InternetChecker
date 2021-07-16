@@ -33,7 +33,7 @@ public class CheckerInternet: ObservableObject, CheckerInternetProtocol{
     }
     
     public init() {
-        NWPathMonitor(requiredInterfaceType: .cellular)
+        NWPathMonitor()
                     .publisher()
                      .map { $0.status }
                     .sink {[weak self] status in
