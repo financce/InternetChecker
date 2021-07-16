@@ -32,7 +32,8 @@ extension NWPathMonitor {
             guard !isStarted else { return }
             isStarted = true
             
-            monitor.pathUpdateHandler = { [unowned self] path in
+            monitor.pathUpdateHandler = { [weak self] path in
+                guard let self = self else { return }
                 _ = self.subscriber.receive(path)
             }
             monitor.start(queue: queue)
